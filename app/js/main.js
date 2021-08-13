@@ -4,8 +4,7 @@
   const yieldInput = calcBox.find('#yield');
   const priceInput = calcBox.find('#price');
   const areaInput = calcBox.find('#area');
-
-  const incomeText = $('#income');
+  const incomeText = calcBox.find('#income');
 
   let isAllInputsSuccess = false;
   const objDataCalc = {
