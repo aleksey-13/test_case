@@ -1,10 +1,10 @@
 (function () {
-  const cropSelect = $('#crop');
-  const yieldInput = $('#yield');
-  const priceInput = $('#price');
-  const areaInput = $('#area');
+  const calcBox = $('.income__calc'); 
+  const cropSelect = calcBox.find('#crop');
+  const yieldInput = calcBox.find('#yield');
+  const priceInput = calcBox.find('#price');
+  const areaInput = calcBox.find('#area');
 
-  const calcBox = $('.income__calc');
   const incomeText = $('#income');
 
   let isAllInputsSuccess = false;
