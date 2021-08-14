@@ -11,7 +11,6 @@
     src: url(../fonts/Roboto/RobotoCondensed-Bold.ttf);
 }
 
-
 $success-color: #2ecc71;
 $error-color: #e74c3c;
 
@@ -44,12 +43,29 @@ body {
 }
 
 .header {
-    background-image: url('../images/header_bg.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     color: #fff;
     padding: 57px 0 10px;
+    position: relative;
+
+    &__slider {
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        .slick-list,
+        .slick-track {
+            height: 100%;
+        }
+
+        &-slide {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+    }
 
     &__primary {
         display: flex;
@@ -280,6 +296,7 @@ body {
             font-size: 36px;
             line-height: 32px;
             text-transform: uppercase;
+            word-break: break-word;
         }
 
         &-text {
@@ -310,17 +327,18 @@ body {
                     bottom: -30%;
                     left: 0;
                     visibility: hidden;
+                    font-size: 10px;
                 }
-              }
-            
+            }
+
             .form-control.success input {
                 border-color: $success-color;
             }
-              
+
             .form-control.error input {
                 border-color: $error-color;
             }
-            
+
             .form-control.error small {
                 visibility: visible;
             }
@@ -334,7 +352,6 @@ body {
                 line-height: 0;
                 color: #a7a9ac;
                 width: 100%;
-                
             }
 
             &-input:last-child {
@@ -378,7 +395,7 @@ body {
         .inner_benefits {
             display: block;
         }
-        
+
         &__container {
             justify-content: space-evenly;
             padding-bottom: 0;
@@ -395,7 +412,7 @@ body {
     }
 }
 
-@media (max-width: 805px) { 
+@media (max-width: 805px) {
     .header {
         .primary_menu__list-item:not(:last-child) {
             margin-right: 20px !important;
@@ -420,12 +437,12 @@ body {
     }
     .benefits {
         .income-h3 {
-                font-size: 30px;
+            font-size: 30px;
         }
     }
 }
 
-@media (max-width: 605px) { 
+@media (max-width: 605px) {
     .header {
         &__secondary {
             .sercondary_menu {
@@ -433,15 +450,15 @@ body {
                     width: auto;
                 }
             }
-            }
+        }
     }
 }
 
-@media (max-width: 570px) { 
+@media (max-width: 570px) {
     .header {
         &__primary {
             position: relative;
-            
+
             .header-title {
                 position: absolute;
                 top: -40px;
@@ -464,8 +481,8 @@ body {
     }
 }
 
-@media (max-width: 570px) { 
-    .benefits {        
+@media (max-width: 570px) {
+    .benefits {
         &__container {
             padding-bottom: 20px;
         }
@@ -477,19 +494,19 @@ body {
     }
 }
 
-@media (max-width: 440px) { 
-    .benefits {        
+@media (max-width: 440px) {
+    .benefits {
         &-img {
             display: none;
         }
     }
 }
 
-@media (max-width: 440px) { 
+@media (max-width: 440px) {
     .header {
         &__primary {
             position: relative;
-            
+
             .header-title {
                 position: absolute;
                 top: -40px;
@@ -509,5 +526,3 @@ body {
         }
     }
 }
-
-
