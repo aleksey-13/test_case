@@ -90,11 +90,16 @@ body {
                 &:hover {
                     text-decoration: underline;
                 }
+
+                &:focus {
+                    outline: none;
+                    text-decoration: underline;
+                }
             }
         }
 
         .language {
-            padding: 5px 15px 5px 8px;
+            padding: 5px 8px;
 
             color: #fff;
             background-color: transparent;
@@ -105,11 +110,7 @@ body {
             cursor: pointer;
 
             option {
-                background-color: transparent;
-            }
-
-            &:focus {
-                outline: none;
+                color: #25383f;
             }
         }
     }

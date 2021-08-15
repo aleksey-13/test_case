@@ -24,7 +24,8 @@ function scripts() {
     return src([
         'node_modules/jquery/dist/jquery.js',
         'node_modules/slick-carousel/slick/slick.min.js',
-        'app/js/main.js'
+        'app/js/main.js',
+        'app/js/slick.js'
     ])
         .pipe(concat('main.min.js'))
         .pipe(uglify())
@@ -35,7 +36,6 @@ function scripts() {
 function styles() {
     return src([
         'node_modules/slick-carousel/slick/slick.css',
-        // 'node_modules/slick-carousel/slick/slick-theme.css',
         'app/scss/style.scss'
     ])
         .pipe(scss({ outputStyle: 'compressed' }))

@@ -1,12 +1,13 @@
 ;(function () {
-    const calcBox = $('.income__calc')
-    const cropSelect = calcBox.find('#crop')
-    const yieldInput = calcBox.find('#yield')
-    const priceInput = calcBox.find('#price')
-    const areaInput = calcBox.find('#area')
-    const incomeText = calcBox.find('#income')
+    const calcContainer = $('.income__calc')
+    const cropSelect = calcContainer.find('#crop')
+    const yieldInput = calcContainer.find('#yield')
+    const priceInput = calcContainer.find('#price')
+    const areaInput = calcContainer.find('#area')
+    const incomeText = calcContainer.find('#income')
 
     let isAllInputsSuccess = false
+
     const objDataCalc = {
         crop: 0,
         yield: 0,
@@ -14,13 +15,30 @@
         area: 0
     }
 
-    document.addEventListener('DOMContentLoaded', () =>
-        checkFields([yieldInput, priceInput, areaInput])
-    )
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputs = [yieldInput, priceInput, areaInput]
 
-    function checkRequired(inputArr) {
+        inputs.forEach((input) => input.on('input', checkFields))
+
+        calcContainer.on('input', () => checkValidation(inputs))
+
+        cropSelect.on('change', setCropDataFromSelect)
+    })
+
+    function setCropDataFromSelect(event) {
+        const value = +$(event.target).val()
+        objDataCalc.crop = value
+
+        if (isAllInputsSuccess) {
+            calcIncome(objDataCalc)
+        }
+    }
+
+    // Checking the correctness of the data in the fields
+    function checkValidation(inputArr) {
         inputArr.forEach((input) => {
             const value = input.val()
+
             if (value.trim() === '') {
                 showError(input, 'Поле не может быть пустым!')
             } else if (+value <= 0) {
@@ -36,33 +54,19 @@
         })
     }
 
-    cropSelect.on('change', (event) => {
-        const value = +$(event.target).val()
-        objDataCalc.crop = value
+    function checkFields(event) {
+        const target = $(event.target)
 
-        if (isAllInputsSuccess) {
+        if (isNumber(value)) {
+            objDataCalc[target.attr('id')] = target.val()
             calcIncome(objDataCalc)
         }
-    })
-
-    calcBox.on('input', () => {
-        checkRequired([yieldInput, priceInput, areaInput])
-    })
-
-    function checkFields(inputArr) {
-        inputArr.forEach((input) => {
-            input.on('input', (event) => {
-                const value = +$(event.target).val()
-                if (isNumber(value)) {
-                    objDataCalc[event.target.id] = value
-                    calcIncome(objDataCalc)
-                }
-            })
-        })
     }
 
+    // Calculate total income
     function calcIncome({ crop, yield, price, area }) {
         const result = crop + yield + price + area
+
         incomeText.text(result)
     }
 
@@ -87,32 +91,4 @@
 
         isAllInputsSuccess = true
     }
-})()
-;(function () {
-    const sliderContainer = $('#slider')
-
-    const sliderImages = [
-        'slider_img_1.png',
-        'slider_img_2.jpg',
-        'slider_img_3.jpg'
-    ]
-
-    const slides = []
-
-    sliderImages.forEach((img) => {
-        const slide = $('<div class="header__slider-slide"></div>').css({
-            'background-image': `url('../images/${img}')`
-        })
-
-        slides.push(slide)
-    })
-
-    sliderContainer.append(slides)
-
-    sliderContainer.slick({
-        arrows: false,
-        autoplay: true,
-        fade: true,
-        infinite: true
-    })
 })()
