@@ -14,7 +14,7 @@
     const slide = $('<div/>')
       .addClass('header__slider-slide')
       .css({
-        'background-image': `url('../images/${img}')`
+        'background-image': `url('./images/${img}')`
       });
 
     slides.push(slide);
